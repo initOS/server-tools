@@ -19,6 +19,7 @@
 
 import logging
 from openerp import _, api, exceptions, models, SUPERUSER_ID
+from openerp.sql_db import db_connect
 from openerp.tools.safe_eval import safe_eval
 from psycopg2 import OperationalError
 
@@ -38,38 +39,42 @@ class Cron(models.Model):
                 _('Only the admin user is allowed to '
                   'execute inactive cron jobs manually'))
 
-        try:
-            # Try to grab an exclusive lock on the job row
-            # until the end of the transaction
-            self.env.cr.execute(
-                """SELECT *
-                   FROM ir_cron
-                   WHERE id=%s
-                   FOR UPDATE NOWAIT""",
-                (self.id,),
-                log_exceptions=False)
+        # Create an extra transaction for the lock
+        db = db_connect(self.env.cr.dbname)
+        with db.cursor() as lock_cr:
+            try:
+                # Try to grab an exclusive lock on the job row
+                # until the end of the transaction
+                lock_cr.execute(
+                    """SELECT *
+                       FROM ir_cron
+                       WHERE id=%s
+                       FOR UPDATE NOWAIT""",
+                    (self.id,),
+                    log_exceptions=False)
+                print("LOCK %s" % self.id)
 
-        except OperationalError as e:
-            # User friendly error if the lock could not be claimed
-            if getattr(e, "pgcode", None) == '55P03':
-                raise exceptions.Warning(
-                    _('Another process/thread is already busy '
-                      'executing this job'))
+            except OperationalError as e:
+                # User friendly error if the lock could not be claimed
+                if getattr(e, "pgcode", None) == '55P03':
+                    raise exceptions.Warning(
+                        _('Another process/thread is already busy '
+                          'executing this job'))
 
-            raise
+                raise
 
-        _logger.info('Job `%s` triggered from form', self.name)
+            _logger.info('Job `%s` triggered from form', self.name)
 
-        # Do not propagate active_test to the method to execute
-        ctx = dict(self.env.context)
-        ctx.pop('active_test', None)
+            # Do not propagate active_test to the method to execute
+            ctx = dict(self.env.context)
+            ctx.pop('active_test', None)
 
-        # Execute the cron job
-        method = getattr(
-            self.with_context(ctx).sudo(self.user_id).env[self.model],
-            self.function)
-        args = safe_eval('tuple(%s)' % (self.args or ''))
-        return method(*args)
+            # Execute the cron job
+            method = getattr(
+                self.with_context(ctx).sudo(self.user_id).env[self.model],
+                self.function)
+            args = safe_eval('tuple(%s)' % (self.args or ''))
+            return method(*args)
 
     @api.model
     def _current_uid(self):
