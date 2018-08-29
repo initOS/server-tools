@@ -52,7 +52,6 @@ class Cron(models.Model):
                        FOR UPDATE NOWAIT""",
                     (self.id,),
                     log_exceptions=False)
-                print("LOCK %s" % self.id)
 
             except OperationalError as e:
                 # User friendly error if the lock could not be claimed
