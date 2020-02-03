@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015-2017
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
@@ -10,7 +9,7 @@ class TestBaseReportAutoQwebCreate(common.TransactionCase):
 
     def setUp(self):
         super(TestBaseReportAutoQwebCreate, self).setUp()
-        self.report_model = self.env['ir.actions.report.xml']
+        self.report_model = self.env['ir.actions.report']
         self.duplicate_model = self.env['ir.actions.report.xml.duplicate']
         self.view_model = self.env['ir.ui.view']
 
