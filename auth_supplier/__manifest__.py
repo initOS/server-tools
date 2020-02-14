@@ -7,14 +7,15 @@
 {
     'name': "Auth Supplier",
     'category': 'Portal',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'depends': [
         'auth_signup',
     ],
     'data': [
         'views/auth_supplier_view.xml',
     ],
-    'author': 'Antiun Ingeniería S.L., '
+    'author': 'initOS GmbH,'
+              'Antiun Ingeniería S.L., '
               'Incaser Informatica S.L., '
               "Tecnativa, "
               'Odoo Community Association (OCA)',
