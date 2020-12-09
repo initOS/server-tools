@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2020 initOS GmbH.
 # Copyright (C):
 # * 2012-Today Serpent Consulting Services (<http://www.serpentcs.com>)
 # * 2016-Today GRAP (http://www.grap.coop)
@@ -35,9 +35,9 @@ class MassSortConfig(models.Model):
         comodel_name='ir.actions.act_window', string='Sidebar Action',
         readonly=True, copy=False, oldname='ref_ir_act_window')
 
-    value_id = fields.Many2one(
-        comodel_name='ir.values', string='Sidebar Button', readonly=True,
-        copy=False, oldname='ref_ir_value')
+    server_action_id = fields.Many2one(
+        comodel_name='ir.actions.server', string='Sidebar Button', readonly=True,
+        copy=False)
 
     line_ids = fields.One2many(
         comodel_name='mass.sort.config.line', inverse_name='config_id',
@@ -88,7 +88,7 @@ class MassSortConfig(models.Model):
     @api.multi
     def create_action(self):
         action_obj = self.env['ir.actions.act_window']
-        values_obj = self.env['ir.values']
+        server_action_obj = self.env['ir.actions.server']
         for config in self:
             button_name = _('Mass Sort (%s)') % config.name
             config.action_id = action_obj.create({
@@ -101,12 +101,11 @@ class MassSortConfig(models.Model):
                 'view_mode': 'form,tree',
                 'target': 'new',
             })
-            config.value_id = values_obj.create({
+            config.server_action_id = server_action_obj.create({
                 'name': button_name,
-                'model': config.model_id.model,
-                'key2': 'client_action_multi',
-                'value': (
-                    "ir.actions.act_window,%s" % config.action_id.id),
+                'type': 'ir.actions.server',
+                'model_id': self.env['ir.model']._get('mass.sort.wizard').id,
+                'binding_model_id': config.model_id.id,
             })
 
     @api.multi
@@ -114,5 +113,5 @@ class MassSortConfig(models.Model):
         for config in self:
             if config.action_id:
                 config.action_id.unlink()
-            if config.value_id:
-                config.value_id.unlink()
+            if config.server_action_id:
+                config.server_action_id.unlink()
