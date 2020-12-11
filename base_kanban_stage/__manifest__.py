@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2020 InitOS Gmbh.
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
     'name': 'Kanban - Stage Support',
     'summary': 'Provides stage model and abstract logic for inheritance',
-    'version': '10.0.1.2.1',
-    'author': 'LasLabs, Odoo Community Association (OCA)',
+    'version': '11.0.1.0.0',
+    'author': 'InitOs Gmbh, LasLabs, Odoo Community Association (OCA)',
     'category': 'base',
     'depends': [
         'base',

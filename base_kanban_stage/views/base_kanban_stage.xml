@@ -63,6 +63,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+
     <menuitem id="base_kanban_stage_root_menu" name="Kanban" 
         parent="base.menu_custom" sequence="50"/>
 
