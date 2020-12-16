@@ -62,6 +62,7 @@ Contributors
 * Carlos Dauden <carlos@incaser.es>
 * Sergio Teruel <sergio@incaser.es>
 * Jairo Llopis <jairo.llopis@tecnativa.com>
+* Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainer
 ----------

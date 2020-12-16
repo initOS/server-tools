@@ -7,7 +7,7 @@
 {
     'name': "Auth Supplier",
     'category': 'Portal',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'depends': [
         'auth_signup',
     ],
@@ -18,7 +18,7 @@
               'Incaser Informatica S.L., '
               "Tecnativa, "
               'Odoo Community Association (OCA)',
-    'website': 'http://www.incaser.es',
+    'website': 'https://github.com/initOS/server-tools',
     'license': 'AGPL-3',
     'installable': True,
 }
