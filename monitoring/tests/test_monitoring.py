@@ -134,8 +134,8 @@ class TestMonitoring(TransactionCase):
             "text/plain",
         )
 
+        self.monitoring.output_format = "invalid"
         with self.assertRaises(NotImplementedError):
-            self.monitoring.output_format = ""
             self.monitoring.response_headers()
 
     def test_prometheus_configuration(self):
@@ -170,5 +170,5 @@ class TestMonitoring(TransactionCase):
             self.monitoring.format_prometheus_line(
                 f"{metric}_value", value=1, labels={"check": "abc", "test": "def"}
             ),
-            '%s_value{check="abc",test="def"} 1' % metric,
+            f'{metric}_value{{check="abc",test="def"}} 1',
         )

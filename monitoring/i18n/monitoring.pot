@@ -1,11 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* monitoring
+#   * monitoring
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-13 07:31+0000\n"
+"PO-Revision-Date: 2026-03-13 07:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,32 +22,8 @@ msgid "Active"
 msgstr ""
 
 #. module: monitoring
-#: model:ir.model.fields,field_description:monitoring.field_monitoring__changeset_change_ids
-#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__changeset_change_ids
-msgid "Changeset Changes"
-msgstr ""
-
-#. module: monitoring
-#: model:ir.model.fields,field_description:monitoring.field_monitoring__changeset_ids
-#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__changeset_ids
-msgid "Changesets"
-msgstr ""
-
-#. module: monitoring
 #: model:ir.model.fields,field_description:monitoring.field_monitoring_script__check_type
 msgid "Check Type"
-msgstr ""
-
-#. module: monitoring
-#: model:ir.model.fields,field_description:monitoring.field_monitoring__count_pending_changeset_changes
-#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__count_pending_changeset_changes
-msgid "Count Pending Changeset Changes"
-msgstr ""
-
-#. module: monitoring
-#: model:ir.model.fields,field_description:monitoring.field_monitoring__count_pending_changesets
-#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__count_pending_changesets
-msgid "Count Pending Changesets"
 msgstr ""
 
 #. module: monitoring
@@ -61,10 +39,10 @@ msgid "Created on"
 msgstr ""
 
 #. module: monitoring
+#. odoo-python
 #: code:addons/monitoring/models/monitoring.py:0
 #: code:addons/monitoring/models/monitoring_script.py:0
 #: model:ir.model.fields,field_description:monitoring.field_monitoring_script__critical
-#, python-format
 msgid "Critical"
 msgstr ""
 
@@ -75,26 +53,26 @@ msgid "Display Name"
 msgstr ""
 
 #. module: monitoring
+#. odoo-python
 #: code:addons/monitoring/models/monitoring_script.py:0
-#, python-format
 msgid "Expect False"
 msgstr ""
 
 #. module: monitoring
+#. odoo-python
 #: code:addons/monitoring/models/monitoring_script.py:0
-#, python-format
 msgid "Expect Higher"
 msgstr ""
 
 #. module: monitoring
+#. odoo-python
 #: code:addons/monitoring/models/monitoring_script.py:0
-#, python-format
 msgid "Expect Lower"
 msgstr ""
 
 #. module: monitoring
+#. odoo-python
 #: code:addons/monitoring/models/monitoring_script.py:0
-#, python-format
 msgid "Expect True"
 msgstr ""
 
@@ -110,9 +88,15 @@ msgid "ID"
 msgstr ""
 
 #. module: monitoring
-#: model:ir.model.fields,field_description:monitoring.field_monitoring____last_update
-#: model:ir.model.fields,field_description:monitoring.field_monitoring_script____last_update
-msgid "Last Modified on"
+#. odoo-python
+#: code:addons/monitoring/models/monitoring_output_mixin.py:0
+msgid "Invalid label naming"
+msgstr ""
+
+#. module: monitoring
+#. odoo-python
+#: code:addons/monitoring/models/monitoring_output_mixin.py:0
+msgid "Invalid metric naming"
 msgstr ""
 
 #. module: monitoring
@@ -138,18 +122,19 @@ msgid "Mail Template"
 msgstr ""
 
 #. module: monitoring
+#: model:ir.model,name:monitoring.model_monitoring_output_mixin
+msgid "Mixin for the Monitoring Output"
+msgstr ""
+
+#. module: monitoring
 #: model:ir.actions.server,name:monitoring.cron_monitoring_ir_actions_server
-#: model:ir.cron,cron_name:monitoring.cron_monitoring
-#: model:ir.cron,name:monitoring.cron_monitoring
 #: model:ir.model.fields,field_description:monitoring.field_monitoring_script__monitoring_ids
 #: model:ir.ui.menu,name:monitoring.menu_monitoring_root
 msgid "Monitoring"
 msgstr ""
 
 #. module: monitoring
-#: code:addons/monitoring/models/monitoring_script.py:0
 #: model:ir.model,name:monitoring.model_monitoring_script
-#, python-format
 msgid "Monitoring Check"
 msgstr ""
 
@@ -164,9 +149,7 @@ msgid "Monitoring Script"
 msgstr ""
 
 #. module: monitoring
-#: code:addons/monitoring/models/monitoring.py:0
 #: model:ir.model,name:monitoring.model_monitoring
-#, python-format
 msgid "Monitoring definition"
 msgstr ""
 
@@ -184,10 +167,37 @@ msgid "Name"
 msgstr ""
 
 #. module: monitoring
+#. odoo-python
 #: code:addons/monitoring/models/monitoring.py:0
 #: code:addons/monitoring/models/monitoring_script.py:0
-#, python-format
 msgid "OK"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__output_format
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_output_mixin__output_format
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__output_format
+msgid "Output Format"
+msgstr ""
+
+#. module: monitoring
+#: model_terms:ir.ui.view,arch_db:monitoring.view_monitoring_form
+#: model_terms:ir.ui.view,arch_db:monitoring.view_monitoring_script_form
+msgid "Prometheus"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__prometheus_label
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_output_mixin__prometheus_label
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__prometheus_label
+msgid "Prometheus Label"
+msgstr ""
+
+#. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__prometheus_metric
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_output_mixin__prometheus_metric
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__prometheus_metric
+msgid "Prometheus Metric"
 msgstr ""
 
 #. module: monitoring
@@ -213,6 +223,13 @@ msgid ""
 msgstr ""
 
 #. module: monitoring
+#: model:ir.model.fields,field_description:monitoring.field_monitoring__smart_search
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_output_mixin__smart_search
+#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__smart_search
+msgid "Smart Search"
+msgstr ""
+
+#. module: monitoring
 #: model:ir.model.fields,field_description:monitoring.field_monitoring_script__snippet
 msgid "Snippet"
 msgstr ""
@@ -224,11 +241,11 @@ msgid "State"
 msgstr ""
 
 #. module: monitoring
+#. odoo-python
 #: code:addons/monitoring/models/monitoring.py:0
 #: code:addons/monitoring/models/monitoring_script.py:0
 #: model:ir.model.constraint,message:monitoring.constraint_monitoring_script_token_uniq
 #: model:ir.model.constraint,message:monitoring.constraint_monitoring_token_uniq
-#, python-format
 msgid "The token must be unique"
 msgstr ""
 
@@ -255,15 +272,9 @@ msgid "Token to use for the API"
 msgstr ""
 
 #. module: monitoring
+#. odoo-python
 #: code:addons/monitoring/models/monitoring.py:0
-#, python-format
 msgid "Unknown"
-msgstr ""
-
-#. module: monitoring
-#: model:ir.model.fields,field_description:monitoring.field_monitoring__user_can_see_changeset
-#: model:ir.model.fields,field_description:monitoring.field_monitoring_script__user_can_see_changeset
-msgid "User Can See Changeset"
 msgstr ""
 
 #. module: monitoring
@@ -277,10 +288,10 @@ msgid "Verbose"
 msgstr ""
 
 #. module: monitoring
+#. odoo-python
 #: code:addons/monitoring/models/monitoring.py:0
 #: code:addons/monitoring/models/monitoring_script.py:0
 #: model:ir.model.fields,field_description:monitoring.field_monitoring_script__warning
-#, python-format
 msgid "Warning"
 msgstr ""
 

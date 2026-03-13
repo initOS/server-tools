@@ -11,7 +11,7 @@ from odoo.tools.safe_eval import safe_eval
 
 class MonitoringScript(models.Model):
     _name = "monitoring.script"
-    _description = _("Monitoring Check")
+    _description = "Monitoring Check"
     _inherit = ["monitoring.output.mixin"]
 
     def _get_types(self):
@@ -56,7 +56,7 @@ class MonitoringScript(models.Model):
     critical = fields.Float(help="Threshold for critical")
 
     _sql_constraints = [
-        ("token_uniq", "UNIQUE(token)", _("The token must be unique")),
+        ("token_uniq", "UNIQUE(token)", "The token must be unique"),
     ]
 
     def _get_context(self):
@@ -101,7 +101,7 @@ class MonitoringScript(models.Model):
         for rec in self.with_context(active_test=False):
             value = rec._evaluate()
 
-            if not isinstance(value, (int, float, bool)):
+            if not isinstance(value, int | float | bool):
                 rec.state = "critical"
             elif rec.check_type == "false":
                 rec.state = rec._state_expect_bool(value, False)

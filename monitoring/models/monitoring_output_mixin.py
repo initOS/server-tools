@@ -4,13 +4,13 @@
 import json
 import re
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class MonitoringOutputMixin(models.AbstractModel):
     _name = "monitoring.output.mixin"
-    _description = _("Mixin for the Monitoring Output")
+    _description = "Mixin for the Monitoring Output"
 
     def _get_output_format(self):
         return [("json", "JSON"), ("prometheus", "Prometheus")]
@@ -29,10 +29,10 @@ class MonitoringOutputMixin(models.AbstractModel):
                 continue
 
             if not regex.match(rec.prometheus_metric):
-                raise ValidationError(_("Invalid metric naming"))
+                raise ValidationError(self.env._("Invalid metric naming"))
 
             if not regex.match(rec.prometheus_label):
-                raise ValidationError(_("Invalid label naming"))
+                raise ValidationError(self.env._("Invalid label naming"))
 
     def format_output(self, result):
         formatter = getattr(self, f"format_{self.output_format}", None)

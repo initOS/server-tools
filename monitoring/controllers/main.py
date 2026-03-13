@@ -4,7 +4,7 @@
 from odoo import http
 from odoo.http import Response, request
 
-from odoo.addons.web.controllers.main import Home
+from odoo.addons.web.controllers.home import Home
 
 
 class MonitoringHome(Home):

@@ -1,1 +1,0 @@
-This module allows monitoring software to extract additional information about an Odoo installation. An administrator can configure monitoring snippets and group them together which allows external software to fetch the results using the token in the URL `/monitoring/<token>`.

@@ -16,18 +16,18 @@
                         <field name="check_type" />
                         <field
                             name="warning"
-                            attrs="{'invisible': [('check_type', 'not in', ('lower', 'higher'))]}"
+                            invisible="check_type not in ('lower', 'higher')"
                         />
                         <field
                             name="critical"
-                            attrs="{'invisible': [('check_type', 'not in', ('lower', 'higher'))]}"
+                            invisible="check_type not in ('lower', 'higher')"
                         />
                         <field name="snippet" />
                     </group>
 
                     <group
                         string="Prometheus"
-                        attrs="{'invisible': [('output_format', '!=', 'prometheus')]}"
+                        invisible="output_format != 'prometheus'"
                     >
                         <field name="prometheus_metric" />
                         <field name="prometheus_label" />
@@ -37,10 +37,10 @@
         </field>
     </record>
 
-     <record id="view_monitoring_script_tree" model="ir.ui.view">
+    <record id="view_monitoring_script_tree" model="ir.ui.view">
         <field name="model">monitoring.script</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-muted="not active"
                 decoration-warning="active and state == 'warning'"
                 decoration-danger="active and state == 'critical'"
@@ -50,14 +50,14 @@
                 <field name="active" widget="boolean_toggle" />
                 <field name="state" />
                 <field name="output_format" />
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_monitoring_script" model="ir.actions.act_window">
         <field name="name">Monitoring Script</field>
         <field name="res_model">monitoring.script</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{'active_test': False}</field>
     </record>
 

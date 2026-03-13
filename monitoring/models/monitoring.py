@@ -1,17 +1,14 @@
 # © 2023 initOS GmbH
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import logging
 import uuid
 
 from odoo import _, api, fields, models
 
-_logger = logging.getLogger(__name__)
-
 
 class Monitoring(models.Model):
     _name = "monitoring"
-    _description = _("Monitoring definition")
+    _description = "Monitoring definition"
     _inherit = ["monitoring.output.mixin"]
 
     def _get_states(self):
@@ -41,7 +38,7 @@ class Monitoring(models.Model):
     )
 
     _sql_constraints = [
-        ("token_uniq", "UNIQUE(token)", _("The token must be unique")),
+        ("token_uniq", "UNIQUE(token)", "The token must be unique"),
     ]
 
     @api.depends("script_ids", "script_ids.state", "script_ids.active")
